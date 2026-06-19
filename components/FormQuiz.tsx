@@ -36,6 +36,12 @@ export default function FormQuiz() {
     pickQuestion()
   }, [selectedType, words])
 
+  const getFormLabel = (form: VachanamForm) => {
+    if (form === 'singular') return 'एकवचनम्'
+    if (form === 'dual') return 'द्विवचनम्'
+    if (form === 'plural') return 'बहुवचनम्'
+  }
+
   const handleAnswer = (guess: VachanamForm) => {
     if (answered) return
 
@@ -73,7 +79,7 @@ export default function FormQuiz() {
         <div className="text-center mb-6 sm:mb-8">
           <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">Which form is this?</p>
           <div className="devanagari text-4xl sm:text-6xl font-medium mb-4 sm:mb-6 break-words">{currentValue}</div>
-          <p className="text-lg sm:text-2xl text-gray-700">{current.word.english}</p>
+          <p className="text-lg sm:text-2xl text-gray-700">{current.word.english} ({current.word.tamil})</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
@@ -97,7 +103,7 @@ export default function FormQuiz() {
                         : 'border-gray-300 text-gray-500 opacity-50'
                 }`}
               >
-                {form.charAt(0).toUpperCase() + form.slice(1)}
+                {getFormLabel(form)}
               </button>
             )
           })}

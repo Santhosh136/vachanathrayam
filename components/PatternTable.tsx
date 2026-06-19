@@ -62,17 +62,17 @@ export default function PatternTable() {
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
               <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">Sanskrit</th>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">Singular</th>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">Dual</th>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">Plural</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">एकवचनम्</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">द्विवचनम्</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">बहुवचनम्</th>
             </tr>
           </thead>
           <tbody>
             {filteredWords.map((word, idx) => {
               const { singular, dual, plural } = word.vachanam
-              const isAkaarantaPullingam = selectedType === 'Akaaranta Pullingam'
-              const isAakaarantaSthrilingam = selectedType === 'Aakaaranta Sthrilingam'
-              const isEekaarantaSthrilingam = selectedType === 'Eekaaranta Sthrilingam'
+              const isAkaarantaPullingam = selectedType === 'अकारान्तः पुल्लिङ्गः'
+              const isAakaarantaSthrilingam = selectedType === 'अकारान्तः स्त्रीलिङ्गः'
+              const isEekaarantaSthrilingam = selectedType === 'ईकारान्तः स्त्रीलिङ्गः'
 
               const pluralHighlight = (isAkaarantaPullingam || isAakaarantaSthrilingam) ? 3 : isEekaarantaSthrilingam ? 4 : 2
               const dualHighlight = isEekaarantaSthrilingam ? 4 : 2

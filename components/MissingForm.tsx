@@ -40,7 +40,11 @@ export default function MissingForm() {
   const forms: VachanamForm[] = ['singular', 'dual', 'plural']
   const hiddenForms = forms.filter(f => f !== current.shownForm)
 
-  const getFormLabel = (form: VachanamForm) => form.charAt(0).toUpperCase() + form.slice(1)
+  const getFormLabel = (form: VachanamForm) => {
+    if (form === 'singular') return 'एकवचनम्'
+    if (form === 'dual') return 'द्विवचनम्'
+    if (form === 'plural') return 'बहुवचनम्'
+  }
   const getFormValue = (form: VachanamForm) => current.word.vachanam[form]
 
   return (
@@ -63,8 +67,8 @@ export default function MissingForm() {
 
       <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-8">
         <div className="text-center mb-6 sm:mb-8">
-          <p className="text-sm sm:text-base text-gray-600 mb-2">English meaning:</p>
-          <p className="text-xl sm:text-3xl font-semibold">{current.word.english}</p>
+          <p className="text-sm sm:text-base text-gray-600 mb-2">English / Tamil meaning:</p>
+          <p className="text-xl sm:text-3xl font-semibold">{current.word.english} ({current.word.tamil})</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
