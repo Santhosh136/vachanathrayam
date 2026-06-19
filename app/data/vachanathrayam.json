@@ -241,14 +241,14 @@
   },
   {
     "id": 21,
-    "sanskrit": "विडालः",
+    "sanskrit": "बिडालः",
     "english": "Cat",
     "tamil": "பூனை",
     "type": "Akaaranta Pullingam",
     "vachanam": {
-      "singular": "विडालः",
-      "dual": "विडालौ",
-      "plural": "विडालाः"
+      "singular": "बिडालः",
+      "dual": "बिडालौ",
+      "plural": "बिडालाः"
     }
   },
   {
