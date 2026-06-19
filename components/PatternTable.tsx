@@ -88,6 +88,12 @@ export default function PatternTable() {
                 dualHighlight = 6;
                 pluralHighlight = 6;
               }
+              
+              if (word.sanskrit === "वृक्षः") {
+                singularHighlight = 4;
+                dualHighlight = 4;
+                pluralHighlight = 5;
+              }
 
               return (
                 <tr key={word.id} className={ idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
