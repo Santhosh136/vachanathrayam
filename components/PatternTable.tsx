@@ -49,7 +49,7 @@ export default function PatternTable() {
           return (
             <div className="p-3 sm:p-4 bg-gray-50 border border-gray-200 rounded">
               <p className="devanagari text-sm sm:text-base font-medium text-gray-700 text-center">
-                {split.suffixes[0]} → {split.suffixes[1]} → {split.suffixes[2]}
+                {split.suffixes[0]} → {split.suffixes[1]} → {selectedType === "अकारान्तः नपुंसकलिङ्गः" ? split.suffixes[2] + "/णि" : split.suffixes[2]}
               </p>
             </div>
           )
