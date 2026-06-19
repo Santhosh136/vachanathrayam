@@ -11,6 +11,8 @@ export default function FormQuiz() {
   const [current, setCurrent] = useState<{ word: Word; form: VachanamForm } | null>(null)
   const [answered, setAnswered] = useState<VachanamForm | null>(null)
   const [score, setScore] = useState({ correct: 0, total: 0 })
+  const [history, setHistory] = useState<Array<{ word: Word; form: VachanamForm }>>([])
+  const [historyIndex, setHistoryIndex] = useState<number>(-1)
 
   useEffect(() => {
     const data = wordsData as Word[]
@@ -28,8 +30,32 @@ export default function FormQuiz() {
     const forms: VachanamForm[] = ['singular', 'dual', 'plural']
     const form = forms[Math.floor(Math.random() * forms.length)]
 
-    setCurrent({ word, form })
+    const newQuestion = { word, form }
+    setCurrent(newQuestion)
     setAnswered(null)
+
+    const newHistory = history.slice(0, historyIndex + 1)
+    newHistory.push(newQuestion)
+    setHistory(newHistory)
+    setHistoryIndex(newHistory.length - 1)
+  }
+
+  const goToPrevious = () => {
+    if (historyIndex > 0) {
+      setHistoryIndex(historyIndex - 1)
+      setCurrent(history[historyIndex - 1])
+      setAnswered(null)
+    }
+  }
+
+  const goToNext = () => {
+    if (historyIndex < history.length - 1) {
+      setHistoryIndex(historyIndex + 1)
+      setCurrent(history[historyIndex + 1])
+      setAnswered(null)
+    } else {
+      pickQuestion()
+    }
   }
 
   useEffect(() => {
@@ -109,16 +135,21 @@ export default function FormQuiz() {
           })}
         </div>
 
-        {answered && (
-          <div className="text-center">
-            <button
-              onClick={pickQuestion}
-              className="w-full sm:w-auto px-6 py-2 border border-gray-300 rounded text-xs sm:text-sm font-medium hover:bg-gray-50"
-            >
-              Next Question →
-            </button>
-          </div>
-        )}
+        <div className="flex gap-2 sm:gap-3 justify-center">
+          <button
+            onClick={goToPrevious}
+            disabled={historyIndex <= 0}
+            className="px-4 sm:px-6 py-2 border border-gray-300 rounded text-xs sm:text-sm font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            ← Previous
+          </button>
+          <button
+            onClick={goToNext}
+            className="px-4 sm:px-6 py-2 border border-gray-300 rounded text-xs sm:text-sm font-medium hover:bg-gray-50"
+          >
+            Next →
+          </button>
+        </div>
       </div>
     </div>
   )

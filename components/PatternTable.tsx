@@ -61,7 +61,6 @@ export default function PatternTable() {
         <table className="w-full text-xs sm:text-sm">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">Sanskrit</th>
               <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">एकवचनम्</th>
               <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">द्विवचनम्</th>
               <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">बहुवचनम्</th>
@@ -84,11 +83,14 @@ export default function PatternTable() {
                 pluralHighlight = 5;
               }
 
+              if (word.sanskrit === "अभिनेत्री") {
+                singularHighlight = 4;
+                dualHighlight = 6;
+                pluralHighlight = 6;
+              }
+
               return (
                 <tr key={word.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari font-medium text-sm sm:text-lg">
-                    {word.sanskrit}
-                  </td>
                   <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-sm sm:text-lg">
                     {singular.slice(0, -singularHighlight)}<span className="text-amber-600 font-bold">{singular.slice(-singularHighlight)}</span>
                   </td>
