@@ -31,7 +31,7 @@ export default function PatternTable() {
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded border text-xs sm:text-sm transition ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded border text-md sm:text-lg transition ${
                 selectedType === type
                   ? 'bg-amber-50 border-amber-500 text-amber-900'
                   : 'border-gray-300 hover:bg-gray-50'
@@ -58,12 +58,12 @@ export default function PatternTable() {
 
 
       <div className="overflow-x-auto border border-gray-200 rounded">
-        <table className="w-full text-xs sm:text-sm">
+        <table className="w-full text-lg sm:text-xl">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">एकवचनम्</th>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">द्विवचनम्</th>
-              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold">बहुवचनम्</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold">एकवचनम्</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold">द्विवचनम्</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold">बहुवचनम्</th>
             </tr>
           </thead>
           <tbody>
@@ -90,14 +90,14 @@ export default function PatternTable() {
               }
 
               return (
-                <tr key={word.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-sm sm:text-lg">
+                <tr key={word.id} className={ idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-lg sm:text-xl text-center">
                     {singular.slice(0, -singularHighlight)}<span className="text-amber-600 font-bold">{singular.slice(-singularHighlight)}</span>
                   </td>
-                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-sm sm:text-lg">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-lg sm:text-xl text-center">
                     {dual.slice(0, -dualHighlight)}<span className="text-amber-600 font-bold">{dual.slice(-dualHighlight)}</span>
                   </td>
-                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-sm sm:text-lg">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-lg sm:text-xl text-center">
                     {plural.slice(0, -pluralHighlight)}<span className="text-amber-600 font-bold">{plural.slice(-pluralHighlight)}</span>
                   </td>
                 </tr>

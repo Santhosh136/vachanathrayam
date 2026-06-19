@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { Noto_Sans_Devanagari } from "next/font/google";
+import { Noto_Serif_Devanagari } from "next/font/google";
 import { Crimson_Pro } from "next/font/google";
 import Nav from "@/components/Nav";
 import "./globals.css";
@@ -15,7 +15,7 @@ const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
 });
 
-const devanagari = Noto_Sans_Devanagari({
+const devanagari = Noto_Serif_Devanagari({
   variable: "--font-devanagari",
   subsets: ["devanagari"],
 });

@@ -84,7 +84,7 @@ export default function MissingForm() {
 
       <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-8">
         <div className="text-center mb-6 sm:mb-8">
-          <p className="text-sm sm:text-base text-gray-600 mb-2">English / Tamil meaning:</p>
+          <p className="text-md sm:text-base text-gray-600 mb-2">English / Tamil meaning:</p>
           <p className="text-xl sm:text-3xl font-semibold">{current.word.english} ({current.word.tamil})</p>
         </div>
 
@@ -95,7 +95,7 @@ export default function MissingForm() {
               onClick={() => !revealed.has(form) && setRevealed(new Set([...revealed, form]))}
               className="border border-gray-300 rounded-lg p-4 sm:p-6 text-center hover:bg-gray-50 transition-colors"
             >
-              <p className="text-xs text-gray-500 mb-2 sm:mb-3 font-semibold">{getFormLabel(form)}</p>
+              <p className="text-lg text-gray-500 mb-2 sm:mb-3 font-semibold">{getFormLabel(form)}</p>
               <div className="devanagari text-2xl sm:text-3xl font-medium min-h-[2rem] sm:min-h-[3rem] flex items-center justify-center cursor-pointer">
                 {revealed.has(form) ? getFormValue(form) : '?'}
               </div>
