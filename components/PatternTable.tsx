@@ -71,7 +71,7 @@ export default function PatternTable() {
             {filteredWords.map((word, idx) => {
               const { singular, dual, plural } = word.vachanam
               const isAkaarantaPullingam = selectedType === 'अकारान्तः पुल्लिङ्गः'
-              const isAakaarantaSthrilingam = selectedType === 'अकारान्तः स्त्रीलिङ्गः'
+              const isAakaarantaSthrilingam = selectedType === 'आकारान्तः स्त्रीलिङ्गः'
               const isEekaarantaSthrilingam = selectedType === 'ईकारान्तः स्त्रीलिङ्गः'
 
               let singularHighlight = 2
