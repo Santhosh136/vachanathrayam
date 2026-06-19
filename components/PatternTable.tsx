@@ -74,8 +74,15 @@ export default function PatternTable() {
               const isAakaarantaSthrilingam = selectedType === 'अकारान्तः स्त्रीलिङ्गः'
               const isEekaarantaSthrilingam = selectedType === 'ईकारान्तः स्त्रीलिङ्गः'
 
-              const pluralHighlight = (isAkaarantaPullingam || isAakaarantaSthrilingam) ? 3 : isEekaarantaSthrilingam ? 4 : 2
-              const dualHighlight = isEekaarantaSthrilingam ? 4 : 2
+              let singularHighlight = 2
+              let pluralHighlight = (isAkaarantaPullingam || isAakaarantaSthrilingam) ? 3 : isEekaarantaSthrilingam ? 4 : 2
+              let dualHighlight = isEekaarantaSthrilingam ? 4 : 2
+
+              if (word.sanskrit === "छात्रः") {
+                singularHighlight = 4;
+                dualHighlight = 4;
+                pluralHighlight = 5;
+              }
 
               return (
                 <tr key={word.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
@@ -83,7 +90,7 @@ export default function PatternTable() {
                     {word.sanskrit}
                   </td>
                   <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-sm sm:text-lg">
-                    {singular.slice(0, -2)}<span className="text-amber-600 font-bold">{singular.slice(-2)}</span>
+                    {singular.slice(0, -singularHighlight)}<span className="text-amber-600 font-bold">{singular.slice(-singularHighlight)}</span>
                   </td>
                   <td className="px-2 sm:px-4 py-2 sm:py-3 devanagari text-sm sm:text-lg">
                     {dual.slice(0, -dualHighlight)}<span className="text-amber-600 font-bold">{dual.slice(-dualHighlight)}</span>

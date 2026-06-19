@@ -10,6 +10,7 @@ export default function MissingForm() {
   const [selectedType, setSelectedType] = useState<string>('')
   const [current, setCurrent] = useState<{ word: Word; shownForm: VachanamForm } | null>(null)
   const [revealed, setRevealed] = useState<Set<VachanamForm>>(new Set())
+  const [history, setHistory] = useState<Array<{ word: Word; shownForm: VachanamForm }>>([])
 
   useEffect(() => {
     const data = wordsData as Word[]
@@ -23,6 +24,10 @@ export default function MissingForm() {
     const toUse = selectedType ? words.filter(w => w.type === selectedType) : words
     if (toUse.length === 0) return
 
+    if (current) {
+      setHistory([...history, current])
+    }
+
     const word = toUse[Math.floor(Math.random() * toUse.length)]
     const forms: VachanamForm[] = ['singular', 'dual', 'plural']
     const shownForm = forms[Math.floor(Math.random() * forms.length)]
@@ -31,7 +36,19 @@ export default function MissingForm() {
     setRevealed(new Set([shownForm]))
   }
 
+  const handlePrev = () => {
+    if (history.length === 0) return
+
+    const newHistory = [...history]
+    const previous = newHistory.pop()!
+
+    setHistory(newHistory)
+    setCurrent(previous)
+    setRevealed(new Set([previous.shownForm]))
+  }
+
   useEffect(() => {
+    setHistory([])
     pickWord()
   }, [selectedType, words])
 
@@ -86,10 +103,17 @@ export default function MissingForm() {
           ))}
         </div>
 
-        <div className="text-center">
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={handlePrev}
+            disabled={history.length === 0}
+            className="px-6 py-2 border border-gray-300 rounded text-xs sm:text-sm font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            ← Previous Word
+          </button>
           <button
             onClick={pickWord}
-            className="w-full sm:w-auto px-6 py-2 border border-gray-300 rounded text-xs sm:text-sm font-medium hover:bg-gray-50"
+            className="px-6 py-2 border border-gray-300 rounded text-xs sm:text-sm font-medium hover:bg-gray-50"
           >
             Next Word →
           </button>
